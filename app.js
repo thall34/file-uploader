@@ -4,6 +4,8 @@ const session = require("express-session");
 const passport = require("passport");
 
 const indexRouter = require('./routes/indexRouter');
+const userRouter = require('./routes/userRouter');
+const folderRouter = require('./routes/folderRouter');
 const errorHandler = require('./middleware/errorHandler');
 
 const PORT = process.env.PORT || 3000
@@ -15,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 require("dotenv/config");
-// require('./config/passport'); uncomment this once passport config is set up
+require('./config/passport');
 app.use(session({ 
     secret: process.env.SESSION_SECRET, 
     resave: false, 
@@ -24,7 +26,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/", indexRouter);
+app.use('/', indexRouter);
+app.use('/user', userRouter);
+app.use('/folder', folderRouter);
 app.get('/{*splat}', (req, res) => {
   res.status(404).render('errors', {
     title: 'Error 404 - Page Not Found',

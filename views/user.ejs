@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= title %></title>
+    </head>
+    <body>
+        <% if (user) { %>
+            <h2>Welcome <%= user.username %></h2>
+            <a href="/user/logout">
+                <button>Log Out</button>
+            </a>
+            <a href="/folder/new">
+                <button>Create New Folder</button>
+            </a>
+            <% if (user.folders.length > 0) { %>
+                <% user.folders.forEach((folder) => { %>
+                    <h3><%= folder.name %></h3>
+                <% }) %>
+            <% } %>
+        <% } else { %>
+            <h2>No authenticated user</h2>
+            <a href="/">
+                <button>Go Back Home</button>
+            </a>
+        <% } %>
+    </body>
+</html>

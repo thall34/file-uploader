@@ -1,13 +1,13 @@
 const prisma = require('../config/db');
+const bcrypt = require('bcryptjs');
 
 async function getUserByName(username) {
     const user = await prisma.user.findUnique({
         where: { username: username },
+        include: {
+            folders: true,
+        },
     });
-
-    if(!user) {
-        return null;
-    };
 
     return user;
 };
@@ -15,11 +15,10 @@ async function getUserByName(username) {
 async function getUserById(id) {
     const user = await prisma.user.findUnique({
         where: { id: id },
+        include: {
+            folders: true,
+        },
     });
-
-    if(!user) {
-        return null
-    };
 
     return user;
 };
