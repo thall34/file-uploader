@@ -1,6 +1,6 @@
 const { body } = require('express-validator');
 
-const validateNewUser = [
+const validateUser = [
     body('username')
     .trim()
     .notEmpty().withMessage('Must include a username')
@@ -27,4 +27,4 @@ const validateNewUser = [
     // }),
 ];
 
-module.exports = validateNewUser;
+module.exports = validateUser;

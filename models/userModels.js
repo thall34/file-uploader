@@ -23,7 +23,7 @@ async function getUserById(id) {
     return user;
 };
 
-async function createUser(username, password) {
+async function createNewUser(username, password) {
     await prisma.user.create({
         data: {
             username: username,
@@ -51,7 +51,7 @@ async function deleteUserById(id) {
 module.exports = {
     getUserByName,
     getUserById,
-    createUser,
+    createNewUser,
     updateUserById,
     deleteUserById,
 }

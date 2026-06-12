@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= title %></title>
+    </head>
+    <body>
+        <% if (folder) { %>
+            <h2><%= folder.name %></h2>
+            <a href="/file/new">
+                <button>Upload New File</button>
+            </a>
+            <a href="/folder/update/:<%= folder.id %>">
+                <button>Update Folder</button>
+            </a>
+            <a href="/folder/delete/:<%= folder.id %>">
+                <button>Delete Folder</button>
+            </a>
+            <% if (folder.files.length > 0) { %>
+                <% folder.files.forEach((file) => { %>
+                    <h3><%= file.name %></h3>
+                <% }) %>
+            <% } %>
+        <% } else { %>
+            <h2>No files</h2>
+            <a href="/user">
+                <button>Go Back to User</button>
+            </a>
+        <% } %>
+    </body>
+</html>
