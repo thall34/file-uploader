@@ -94,7 +94,7 @@ async function deleteUser(req, res, next) {
 
     try {
         await db.deleteUserById(id);
-        await logOutUser();
+        res.redirect('/')
     } catch(error) {
         next(error);
     };

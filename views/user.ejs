@@ -11,11 +11,11 @@
             <a href="/user/logout">
                 <button>Log Out</button>
             </a>
-            <a href="/user/update/:<%= user.id %>">
+            <a href="/user/update/<%= user.id %>">
                 <button>Update User</button>
             </a>
-            <a href="/user/delete/:<%= user.id %>">
-                <button>Delete User and Log Out</button>
+            <a href="/user/delete/<%= user.id %>">
+                <button>Delete User</button>
             </a>
             <a href="/folder/new">
                 <button>Create New Folder</button>
@@ -23,7 +23,7 @@
             <% if (user.folders.length > 0) { %>
                 <% user.folders.forEach((folder) => { %>
                     <h3><%= folder.name %></h3>
-                    <a href="/folder/:<%= folder.id %>">
+                    <a href="/folder/<%= folder.id %>">
                         <button>Open Folder</button>
                     </a>
                 <% }) %>
