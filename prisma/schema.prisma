@@ -38,7 +38,7 @@ model File {
 
 model Session {
   id  String  @id
-  sessionid String  @unique
+  sid String  @unique
   data  String
-  expiration  DateTime
+  expiresAt  DateTime
 }

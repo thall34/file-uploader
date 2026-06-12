@@ -7,7 +7,7 @@ async function getFolderPage(req, res, next) {
     try {
         res.render('folder', {
             title: folder.name,
-            files: folder.files,
+            folder: folder,
         });
     } catch(error) {
         next(error);
@@ -55,7 +55,7 @@ async function postUpdatedFolder(req, res, next) {
 
     try {
         await db.updateFolderById(name, id);
-        res.redirect('/user');
+        res.redirect(`/folder/${id}`);
     } catch(error) {
         next(error);
     };

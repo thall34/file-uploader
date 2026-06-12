@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 require("dotenv/config");
 require('./config/passport');
 app.use(session({ 
-    secret: process.env.SESSION_SECRET, 
+    secret: process.env.SESSION_SECRET || 'secret', 
     resave: false, 
     saveUninitialized: false 
 }));
