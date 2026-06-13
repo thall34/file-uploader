@@ -8,6 +8,12 @@
     </title>
 </head>
 <body>
+    <% if (user) { %>
+        <h1>Welcome <%= user.username %></h1>
+        <a href="/user">
+            <button>Go to User Dashboard</button>
+        </a>
+    <% } else { %>
     <form action="/user/login" method="POST">
         <h2>Login</h2>
         <label for="username">Username: </label>
@@ -19,5 +25,6 @@
     <a href="/user/new">
         <button>Create New User</button>
     </a>
+    <% } %>
 </body>
 </html>

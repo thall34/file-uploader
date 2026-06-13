@@ -83,7 +83,7 @@ async function postUpdatedUser(req, res, next) {
         const { username, password } = matchedData(req);
         const hashedPassword = await bcrypt.hash(password, 10)
         await db.updateUserById(username, hashedPassword, id);
-        res.redirect('/');
+        res.redirect('/user');
     } catch(error) {
         next(error);
     };
