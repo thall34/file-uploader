@@ -4,9 +4,10 @@ const { uploadToCloudinary, cloudinary } = require('../config/cloudinary');
 // loads file view page
 async function getFilePage(req, res, next) {
     const id = req.validatedId;
-    const file = await db.getFileById(id);
 
     try {
+        const file = await db.getFileById(id);
+
         res.render('file', {
             title: file.fileName,
             file: file,
@@ -33,9 +34,10 @@ async function getNewFileForm(req, res, next) {
 // loads file name update form
 async function getUpdateFileForm(req, res, next) {
     const id = req.validatedId;
-    const file = await db.getFileById(id);
 
     try {
+        const file = await db.getFileById(id);
+        
         res.render('updateFileForm', {
             title: 'Update File',
             id: id,
@@ -57,10 +59,12 @@ async function postNewFile(req, res, next) {
     
     const { originalname, size } = req.file
     const id = req.validatedId;
-    const cloudinaryResult = await uploadToCloudinary(req.file.buffer);
 
     try {
+        const cloudinaryResult = await uploadToCloudinary(req.file.buffer);
+
         await db.createNewFile(originalname, cloudinaryResult.secure_url, cloudinaryResult.public_id, size, id);
+
         res.redirect(`/folder/${id}`);
     } catch(error) {
         next(error);
@@ -74,6 +78,7 @@ async function postUpdatedFile(req, res, next) {
 
     try {
         await db.updateFileById(fileName, id);
+
         res.redirect(`/file/${id}`);
     } catch(error) {
         next(error);
@@ -83,11 +88,14 @@ async function postUpdatedFile(req, res, next) {
 // deletes file from cloudinary and file record from database
 async function deleteFile(req, res, next) {
     const id = req.validatedId;
-    const file = await db.getFileById(id);
+    
 
     try {
+        const file = await db.getFileById(id);
+
         await cloudinary.uploader.destroy(file.cloudinaryId);
         await db.deleteFileById(id);
+
         res.redirect(`/folder/${file.folderId}`);
     } catch(error) {
         next(error);
@@ -97,9 +105,10 @@ async function deleteFile(req, res, next) {
 // downloads file from cloudinary using unique path
 async function downloadFile(req, res, next) {
     const id = req.validatedId;
-    const file = await db.getFileById(id);
 
     try {
+        const file = await db.getFileById(id);
+        
         res.redirect(file.path);
     } catch(error) {
         next(error);

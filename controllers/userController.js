@@ -43,9 +43,10 @@ async function getNewUserForm(req, res, next) {
 // loads update user info page
 async function getUpdateUserForm(req, res, next) {
     const id = req.validatedId;
-    const user = await db.getUserById(id);
 
     try {
+        const user = await db.getUserById(id);
+
         res.render('updateUserForm', {
             title: 'Update User',
             id: id,
@@ -68,8 +69,9 @@ async function postNewUser(req, res, next) {
 
     try {
         const { username, password } = matchedData(req);
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
         await db.createNewUser(username, hashedPassword);
+
         res.redirect('/')
     } catch(error) {
         next(error);
@@ -89,8 +91,9 @@ async function postUpdatedUser(req, res, next) {
 
     try {
         const { username, password } = matchedData(req);
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
         await db.updateUserById(username, hashedPassword, id);
+        
         res.redirect('/user');
     } catch(error) {
         next(error);

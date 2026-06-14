@@ -3,9 +3,9 @@ const db = require('../models/fileModels');
 // validates that the folder userId matches the current logged in user's id
 async function checkFileOwnership(req, res, next) {
     const id = req.validatedId;
-    const file = await db.getFileById(id);
 
     try {
+        const file = await db.getFileById(id);
         if (!file) {
             return res.status(404).render('errors', {
                 title: '404 - File not found',

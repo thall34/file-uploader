@@ -49,6 +49,7 @@ async function postNewFolder(req, res, next) {
 
     try {
         await db.createNewFolder(name, id);
+
         res.redirect('/user');
     } catch(error) {
         next(error);
@@ -62,6 +63,7 @@ async function postUpdatedFolder(req, res, next) {
 
     try {
         await db.updateFolderById(name, id);
+
         res.redirect(`/folder/${id}`);
     } catch(error) {
         next(error);
@@ -74,6 +76,7 @@ async function deleteFolder(req, res, next) {
     
     try {
         await db.deleteFolderById(id);
+        
         res.redirect('/user');
     } catch(error) {
         next(error);
