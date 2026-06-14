@@ -4,7 +4,9 @@
   "description": "Google Drive style file uploading database app using Express, EJS, Express-Validator, Passport, Bcryptjs, PostgresSQL, and Prisma",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "postinstall": "prisma generate"
   },
   "repository": {
     "type": "git",
