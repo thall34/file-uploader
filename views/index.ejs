@@ -6,25 +6,31 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <% if (user) { %>
-        <h1>Welcome <%= user.username %></h1>
-        <a href="/user">
-            <button>Go to User Dashboard</button>
+    <main>
+        <%- include('./partials/header.ejs') %>
+        <% if (user) { %>
+            <h1>Welcome <%= user.username %></h1>
+            <a href="/user">
+                <button>Go to User Dashboard</button>
+            </a>
+        <% } else { %>
+        <form action="/user/login" method="POST">
+            <h2>Login</h2>
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username">
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password">
+            <button type="submit">Log In</button>
+        </form>
+        <a href="/user/new">
+            <button>Create New User</button>
         </a>
-    <% } else { %>
-    <form action="/user/login" method="POST">
-        <h2>Login</h2>
-        <label for="username">Username: </label>
-        <input type="text" name="username" id="username">
-        <label for="password">Password: </label>
-        <input type="password" name="password" id="password">
-        <button type="submit">Log In</button>
-    </form>
-    <a href="/user/new">
-        <button>Create New User</button>
-    </a>
-    <% } %>
+        <% } %>
+        <%- include('./partials/footer.ejs') %>
+    </main>
 </body>
 </html>

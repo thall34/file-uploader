@@ -43,11 +43,13 @@ async function getNewUserForm(req, res, next) {
 // loads update user info page
 async function getUpdateUserForm(req, res, next) {
     const id = req.validatedId;
+    const user = await db.getUserById(id);
 
     try {
         res.render('updateUserForm', {
             title: 'Update User',
             id: id,
+            user: user,
         });
     } catch(error) {
         next(error);

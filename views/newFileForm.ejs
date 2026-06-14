@@ -4,13 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><%= title %></title>
+        <link rel="stylesheet" href="/reset.css">
+        <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
-        <form action="/file/new/<%= id %>" method="POST" enctype="multipart/form-data">
-            <h1><%= title %></h1>
-            <label for="file">File: (max file size 5mb and must be .jpg, .png or .webp)</label>
-            <input type="file" name="file" id="file">
-            <button type="submit">Upload File</button>
-        </form>
+        <main>
+            <%- include('./partials/header.ejs') %>
+            <form action="/file/new/<%= id %>" method="POST" enctype="multipart/form-data">
+                <h1><%= title %></h1>
+                <label for="file">File: (max file size 5mb and must be .jpg, .png or .webp)</label>
+                <input type="file" name="file" id="file">
+                <button type="submit">Upload File</button>
+            </form>
+            <%- include('./partials/footer.ejs') %>
+        </main>
     </body>
 </html>

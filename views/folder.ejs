@@ -4,35 +4,47 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><%= title %></title>
+        <link rel="stylesheet" href="/reset.css">
+        <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
-        <% if (folder) { %>
-            <h2><%= folder.name %></h2>
-            <a href="/file/new/<%= folder.id %>">
-                <button>Upload New File</button>
-            </a>
-            <a href="/folder/update/<%= folder.id %>">
-                <button>Update Folder</button>
-            </a>
-            <a href="/folder/delete/<%= folder.id %>">
-                <button>Delete Folder</button>
-            </a>
-            <% if (folder.files.length > 0) { %>
-                <% folder.files.forEach((file) => { %>
-                    <h3><%= file.fileName %></h3>
-                    <a href="/file/<%= file.id %>">
-                        <button>More Info</button>
+        <main>
+            <%- include('./partials/header.ejs') %>
+            <% if (folder) { %>
+                <h2><%= folder.name %></h2>
+                <div class="button-bar">
+                    <a href="/file/new/<%= folder.id %>">
+                        <button>Upload New File</button>
                     </a>
-                <% }) %>
+                    <a href="/folder/update/<%= folder.id %>">
+                        <button>Update Folder</button>
+                    </a>
+                    <a href="/folder/delete/<%= folder.id %>">
+                        <button>Delete Folder</button>
+                    </a>
+                </div>
+                <% if (folder.files.length > 0) { %>
+                    <% folder.files.forEach((file) => { %>
+                        <div class="card">
+                            <h3><%= file.fileName %></h3>
+                            <a href="/file/<%= file.id %>">
+                                <button>More Info</button>
+                            </a>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <h2>No Files</h2>
+                <% } %>
+                <a href="/user">
+                    <button>Go Back to User</button>
+                </a>
+            <% } else { %>
+                <h2>No folder</h2>
+                <a href="/user">
+                    <button>Go Back to User</button>
+                </a>
             <% } %>
-            <a href="/user">
-                <button>Go Back to User</button>
-            </a>
-        <% } else { %>
-            <h2>No folder</h2>
-            <a href="/user">
-                <button>Go Back to User</button>
-            </a>
-        <% } %>
+            <%- include('./partials/footer.ejs') %>
+        </main>
     </body>
 </html>
