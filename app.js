@@ -25,7 +25,7 @@ app.use(session({
   cookie: {
     maxAge: 7 * 24 * 60 * 60 * 1000
   },  
-  secret: process.env.SESSION_SECRET || 'secret', 
+  secret: process.env.SESSION_SECRET, 
   resave: false, 
   saveUninitialized: false,
   store: new PrismaSessionStore(

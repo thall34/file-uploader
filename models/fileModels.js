@@ -3,6 +3,9 @@ const prisma = require('../config/db');
 async function getFileById(id) {
     const file = await prisma.file.findUnique({
         where: { id: id },
+        include: {
+            folder: true,
+        },
     });
 
     return file;

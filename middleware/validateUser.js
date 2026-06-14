@@ -15,16 +15,6 @@ const validateUser = [
         minNumbers: 1,
         minSymbols: 1,
     }).withMessage('Password must contain at least 1 lower case letter, 1 upper case letter, 1 number, and 1 symbol'),
-    // body('confirmPassword')
-    // .trim()
-    // .notEmpty().withMessage('Please confirm your password by entering it again')
-    // .custom((value, { req }) => {
-    //     if (value !== req.body.password) {
-    //         throw new Error('Passwords do not match');
-    //     };
-
-    //     return true;
-    // }),
 ];
 
 module.exports = validateUser;

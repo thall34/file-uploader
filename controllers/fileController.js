@@ -48,6 +48,13 @@ async function getUpdateFileForm(req, res, next) {
 
 // adds new file info to database and uploads to cloudinary
 async function postNewFile(req, res, next) {
+    if (!req.file) {
+        return res.status(400).render('errors', {
+            title: 'No file uploaded',
+            message: 'No file uploaded',
+        });
+    };
+    
     const { originalname, size } = req.file
     const id = req.validatedId;
     const cloudinaryResult = await uploadToCloudinary(req.file.buffer);
