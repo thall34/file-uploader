@@ -8,7 +8,7 @@ const checkFileOwnership = require('../middleware/checkFileOwnership');
 const checkFolderOwnership = require('../middleware/checkFolderOwnership');
 
 fileRouter.get('/new/:id', isAuthenticated, validateId, checkFolderOwnership, fileController.getNewFileForm);
-fileRouter.post('/new/:id', isAuthenticated, validateId, checkFolderOwnership, fileController.postNewFile);
+fileRouter.post('/new/:id', isAuthenticated, validateId, checkFolderOwnership, uploadFile, fileController.postNewFile);
 fileRouter.get('/update/:id', isAuthenticated, validateId, checkFileOwnership, fileController.getUpdateFileForm);
 fileRouter.post('/update/:id', isAuthenticated, validateId, checkFileOwnership, fileController.postUpdatedFile);
 fileRouter.get('/delete/:id', isAuthenticated, validateId, checkFileOwnership, fileController.deleteFile);
