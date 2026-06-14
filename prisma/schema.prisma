@@ -32,6 +32,7 @@ model File {
   folderId  Int?
   fileName  String
   path  String
+  cloudinaryId  String
   size  Int
   folder  Folder? @relation(fields: [folderId], references: [id], onDelete: Cascade)
 }

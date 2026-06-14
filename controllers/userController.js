@@ -2,6 +2,7 @@ const db = require('../models/userModels');
 const bcrypt = require('bcryptjs')
 const { validationResult, matchedData } = require('express-validator');
 
+// logs out user from passport session
 async function logOutUser(req, res, next) {
     try {
         req.logout((error) => {
@@ -16,6 +17,7 @@ async function logOutUser(req, res, next) {
     };
 };
 
+// loads user view page
 async function getUserPage(req, res, next) {
     try {
         res.render('user', {
@@ -27,6 +29,7 @@ async function getUserPage(req, res, next) {
     };
 };
 
+// loads new user page
 async function getNewUserForm(req, res, next) {
     try {
         res.render('newUserForm', {
@@ -37,6 +40,7 @@ async function getNewUserForm(req, res, next) {
     };
 };
 
+// loads update user info page
 async function getUpdateUserForm(req, res, next) {
     const id = req.validatedId;
 
@@ -50,6 +54,7 @@ async function getUpdateUserForm(req, res, next) {
     };
 };
 
+// creates new user in database
 async function postNewUser(req, res, next) {
     const errors = validationResult(req);
 
@@ -69,6 +74,7 @@ async function postNewUser(req, res, next) {
     };
 };
 
+// updates user in database
 async function postUpdatedUser(req, res, next) {
     const errors = validationResult(req);
     const id = req.validatedId;
@@ -89,6 +95,7 @@ async function postUpdatedUser(req, res, next) {
     };
 };
 
+// deletes user from database and redirects to the home page for login/registration
 async function deleteUser(req, res, next) {
     const id = req.validatedId;
 

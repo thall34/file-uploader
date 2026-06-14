@@ -8,6 +8,7 @@ const prisma = require('./config/db');
 const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
 const folderRouter = require('./routes/folderRouter');
+const fileRouter = require('./routes/fileRouter');
 const errorHandler = require('./middleware/errorHandler');
 
 const PORT = process.env.PORT || 3000
@@ -42,6 +43,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/folder', folderRouter);
+app.use('/file', fileRouter);
 app.get('/{*splat}', (req, res) => {
   res.status(404).render('errors', {
     title: 'Error 404 - Page Not Found',

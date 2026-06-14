@@ -1,3 +1,4 @@
+// loads homepage
 async function getHomepage(req, res, next) {
     try {
         res.render('index', {

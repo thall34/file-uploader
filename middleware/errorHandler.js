@@ -1,5 +1,32 @@
+const multer = require('multer');
+
 function errorHandler(err, req, res, next) {
     console.error(err);
+
+    // Multer errors
+    if (err instanceof multer.MulterError) {
+        switch (err.code) {
+            case 'LIMIT_FILE_SIZE':
+                return res.status(400).render('errors', {
+                    title: 'File Too Large',
+                    message: 'The uploaded file exceeds the maximum allowed (5mb)',
+                });
+            
+            default:
+                return res.status(400).render('errors', {
+                    title: 'Upload Error',
+                    message: 'Upload Error',
+                });
+        };
+    };
+
+    // Multer upload wrong file type error
+    if (err.message === 'Invalid file type') {
+        return res.status(400).render('errors', {
+            title: 'Invalid File Type',
+            message: 'Only JPG, PNG, and WEBP images are allowed.',
+        });
+    }
 
     // postSQL Database errors
     if(err.code) {
@@ -11,8 +38,8 @@ function errorHandler(err, req, res, next) {
 
     // fallback to catch all errors
     return res.status(500).render('errors', {
-            title: 'Error 500 - Database error occured',
-            message: 'Error - 500: Database error occured',
+            title: 'Error 500 - Server error occured',
+            message: 'Error - 500: Server error occured',
     });
 };
 

@@ -8,7 +8,7 @@
     <body>
         <% if (folder) { %>
             <h2><%= folder.name %></h2>
-            <a href="/file/new">
+            <a href="/file/new/<%= folder.id %>">
                 <button>Upload New File</button>
             </a>
             <a href="/folder/update/<%= folder.id %>">
@@ -19,11 +19,17 @@
             </a>
             <% if (folder.files.length > 0) { %>
                 <% folder.files.forEach((file) => { %>
-                    <h3><%= file.name %></h3>
+                    <h3><%= file.fileName %></h3>
+                    <a href="/file/<%= file.id %>">
+                        <button>More Info</button>
+                    </a>
                 <% }) %>
             <% } %>
+            <a href="/user">
+                <button>Go Back to User</button>
+            </a>
         <% } else { %>
-            <h2>No files</h2>
+            <h2>No folder</h2>
             <a href="/user">
                 <button>Go Back to User</button>
             </a>

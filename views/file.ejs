@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= title %></title>
+    </head>
+    <body>
+        <% if (file) { %>
+            <h2><%= file.fileName %></h2>
+            <h3><%= (file.size / 1048576).toFixed(2) %> MB</h3>
+            <a href="/file/download/<%= file.id %>">
+                <button>Download File</button>
+            </a>
+            <a href="/file/update/<%= file.id %>">
+                <button>Update File</button>
+            </a>
+            <a href="/file/delete/<%= file.id %>">
+                <button>Delete File</button>
+            </a>
+            <a href="/folder/<%= file.folderId %>">
+                <button>Go Back to Folder</button>
+            </a>
+        <% } else { %>
+            <h2>No File</h2>
+            <a href="/user">
+                <button>Go Back to User</button>
+            </a>
+        <% } %>
+    </body>
+</html>
